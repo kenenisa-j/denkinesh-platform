@@ -1,0 +1,65 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Phase 10: Admin Authentication Table
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  @@map("admins")
+}
+model Project {
+  id               String   @id @default(uuid())
+  title            String
+  slug             String   @unique
+  category         String   // e.g., "Web App", "Automation", "ERP"
+  
+  // Dual-Summary Architecture
+  businessSummary  String   @db.Text // Clear, non-technical value proposition for clients
+  technicalSummary String   @db.Text // In-depth technical architecture breakdown for engineers
+  
+  // Media & Metadata Assets
+  thumbnailUrl     String
+  liveUrl          String?
+  githubUrl        String?
+  
+  // Arrays for search indexing and categorization filtering
+  tags             String[] // e.g., ["Next.js", "Prisma", "PostgreSQL"]
+  features         String[] // e.g., ["QR Check-in", "Real-time Analytics"]
+  
+  // Status flags
+  isFeatured       Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([category])
+  @@index([slug])
+}
+model TeamMember {
+  id           String   @id @default(uuid())
+  name         String
+  role         String   // e.g., "Lead Full-Stack Engineer", "AI Specialist"
+  avatarUrl    String   // Profile picture file string/URL
+  bio          String   @db.Text
+  specialties  String[] // Array tracking operational skill vectors (e.g., ["React", "Node.js", "LLMs"])
+  
+  // Optional external profiles
+  githubUrl    String?
+  linkedinUrl  String?
+  twitterUrl   String?
+
+  // System tracking attributes
+  order        Int      @default(0) // Allows custom sorting order on the frontend directory
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([isActive])
+}

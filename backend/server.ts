@@ -1,0 +1,26 @@
+import express from 'express';
+import cors from 'cors';
+// 1. Import your newly created project routing file
+import projectRoutes from './routes/project.routes.js';
+import teamRoutes from './routes/team.routes.js';
+
+const app = express();
+
+// Standard middleware stack
+app.use(cors());
+app.use(express.json());
+
+// 2. Register the portfolio project route pipeline
+// This makes the route active at: http://localhost:5000/api/v1/projects
+app.use('/api/v1', projectRoutes);
+app.use('/api/v1', teamRoutes);
+
+// Base health check routing option
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy' });
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running smoothly on port ${PORT}`);
+});
