@@ -7,7 +7,6 @@ import { techDomains, DomainCategory } from "./techData";
 export default function TechShowcase() {
   const [activeTab, setActiveTab] = useState<string>("frontend");
 
-  // Simple local component to map standard vector icon markers safely
   const IconMarker = ({ id }: { id: string }) => {
     const props = { className: "w-6 h-6 transition-colors duration-300" };
     switch (id) {
@@ -29,39 +28,42 @@ export default function TechShowcase() {
   const selectedDomain = techDomains.find((d) => d.id === activeTab) || techDomains[0];
 
   return (
-    <section id="technologies" className="py-24 bg-white border-b border-slate-100 overflow-hidden">
+    /* Completely dropped the negative margin breakout hacks to fix the offset crash */
+    <section
+      id="technologies"
+      className="w-full py-24 bg-[#030712] border-b border-slate-900 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Heading */}
         <div className="text-center mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
             Production Tech Stack
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-brand-navy tracking-tight mt-2 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2 mb-4">
             Our Core Technical Competencies
           </h2>
           <div className="w-12 h-1 bg-brand-blue mx-auto rounded" />
         </div>
 
-        {/* Tabbed Filtering Panel - Highly Mobile Responsive down to 320px */}
-        <div className="flex justify-start lg:justify-center items-center overflow-x-auto pb-4 mb-12 scrollbar-none gap-2 px-1 mask-linear">
+        {/* Tabbed Filtering Panel */}
+        <div className="flex justify-start lg:justify-center items-center overflow-x-auto pb-4 mb-12 scrollbar-none gap-2 px-1">
           {techDomains.map((domain) => {
             const isSelected = activeTab === domain.id;
             return (
               <button
                 key={domain.id}
                 onClick={() => setActiveTab(domain.id)}
-                className={`relative flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-200 outline-none ${
-                  isSelected 
-                    ? "text-brand-blue shadow-md shadow-brand-blue/5 border border-slate-200/80" 
-                    : "text-brand-text hover:text-brand-navy hover:bg-slate-50 border border-transparent"
-                }`}
+                className={`relative flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-200 outline-none ${isSelected
+                    ? "text-brand-blue border border-slate-800"
+                    : "text-gray-400 hover:text-white hover:bg-slate-900/50 border border-transparent"
+                  }`}
               >
-                <div className={isSelected ? "text-brand-blue" : "text-slate-400"}>
+                <div className={isSelected ? "text-brand-blue" : "text-slate-500"}>
                   <IconMarker id={domain.id} />
                 </div>
-                {domain.title.split(" ")[0]} {/* Shortened labels for clean scaling */}
-                
+                {domain.title.split(" ")[0]}
+
                 {isSelected && (
                   <motion.div
                     layoutId="activeTabIndicator"
@@ -74,9 +76,9 @@ export default function TechShowcase() {
           })}
         </div>
 
-        {/* Layout Shift Area with Smooth Presence Transformations */}
+        {/* Layout Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start min-h-[320px]">
-          
+
           {/* Domain Description Panel */}
           <motion.div
             key={`desc-${selectedDomain.id}`}
@@ -89,8 +91,8 @@ export default function TechShowcase() {
             <div className="w-12 h-12 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center">
               <IconMarker id={selectedDomain.id} />
             </div>
-            <h3 className="text-2xl font-bold text-brand-navy">{selectedDomain.title}</h3>
-            <p className="text-brand-text text-sm sm:text-base leading-relaxed">
+            <h3 className="text-2xl font-bold text-white">{selectedDomain.title}</h3>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               {selectedDomain.description}
             </p>
           </motion.div>
@@ -112,16 +114,16 @@ export default function TechShowcase() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}
-                    whileHover={{ y: -4, boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.05)" }}
-                    className="p-5 rounded-xl bg-brand-bg border border-slate-200/60 flex items-center justify-between transition-all"
+                    whileHover={{ y: -4, boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5)" }}
+                    className="p-5 rounded-xl bg-[#0f172a] border border-slate-800 flex items-center justify-between transition-all"
                   >
                     <div>
                       <span className="text-xs font-semibold uppercase tracking-wider text-brand-teal block mb-1">
                         {tech.category}
                       </span>
-                      <h4 className="text-base font-bold text-brand-navy">{tech.name}</h4>
+                      <h4 className="text-base font-bold text-white">{tech.name}</h4>
                     </div>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-white border border-slate-200 text-brand-text">
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-[#1e293b] border border-slate-700 text-gray-300">
                       {tech.level}
                     </span>
                   </motion.div>
