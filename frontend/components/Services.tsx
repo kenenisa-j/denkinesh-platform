@@ -10,9 +10,9 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-brand-bg">
+    <section id="services" className="py-24 bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Heading */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-brand-navy tracking-tight mb-4">
@@ -27,8 +27,8 @@ export default function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceList.map((service, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="group p-8 rounded-2xl bg-white border border-slate-200/60 hover:border-brand-blue/30 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl group-hover:bg-brand-blue/5 transition-colors mb-6">
@@ -40,8 +40,8 @@ export default function Services() {
               <p className="text-brand-text text-sm leading-relaxed mb-6">
                 {service.desc}
               </p>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="inline-flex items-center gap-2 text-sm font-bold text-brand-blue group-hover:text-brand-teal transition-colors"
               >
                 Learn More <span>→</span>
