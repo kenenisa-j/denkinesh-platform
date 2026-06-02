@@ -60,7 +60,7 @@ export default function LeadCaptureForm() {
 
                 {/* Component Title Header */}
                 <div className="mb-16 text-center flex flex-col items-center justify-center w-full">
-                    <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-blue bg-slate-900 px-3 py-1.5 rounded-md border border-slate-800">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-500 bg-slate-900 px-3 py-1.5 rounded-md border border-slate-800">
                         Enterprise Inquiries
                     </span>
                     <h2 className="mt-6 text-4xl font-black tracking-tight text-white sm:text-5xl">
@@ -83,7 +83,7 @@ export default function LeadCaptureForm() {
                                     type="text"
                                     placeholder="Kenenisa Jaleto"
                                     {...register('clientName')}
-                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-brand-blue ${errors.clientName ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 ${errors.clientName ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                         }`}
                                 />
                                 {errors.clientName && <span className="text-xs text-rose-400 font-medium">{errors.clientName.message}</span>}
@@ -96,7 +96,7 @@ export default function LeadCaptureForm() {
                                     type="email"
                                     placeholder="partner@enterprise.com"
                                     {...register('email')}
-                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-brand-blue ${errors.email ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 ${errors.email ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                         }`}
                                 />
                                 {errors.email && <span className="text-xs text-rose-400 font-medium">{errors.email.message}</span>}
@@ -111,7 +111,7 @@ export default function LeadCaptureForm() {
                                     type="text"
                                     placeholder="Denkinesh Tech Solutions"
                                     {...register('company')}
-                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-brand-blue ${errors.company ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 ${errors.company ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                         }`}
                                 />
                                 {errors.company && <span className="text-xs text-rose-400 font-medium">{errors.company.message}</span>}
@@ -124,7 +124,7 @@ export default function LeadCaptureForm() {
                                     type="number"
                                     placeholder="15000"
                                     {...register('budget', { valueAsNumber: true })}
-                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-brand-blue ${errors.budget ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 ${errors.budget ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                         }`}
                                 />
                                 {errors.budget && <span className="text-xs text-rose-400 font-medium">{errors.budget.message}</span>}
@@ -138,7 +138,7 @@ export default function LeadCaptureForm() {
                                 rows={5}
                                 placeholder="Describe your architecture requirements, feature dependencies, and scalability goals..."
                                 {...register('projectDetails')}
-                                className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-brand-blue resize-none ${errors.projectDetails ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 resize-none ${errors.projectDetails ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                     }`}
                             />
                             {errors.projectDetails && <span className="text-xs text-rose-400 font-medium">{errors.projectDetails.message}</span>}
@@ -156,7 +156,7 @@ export default function LeadCaptureForm() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full sm:w-auto px-10 py-4 rounded-xl bg-brand-blue text-white font-bold text-sm tracking-wide transition-all duration-200 hover:bg-opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none"
+                                className="w-full sm:w-auto px-10 py-4 rounded-xl bg-blue-600 text-white font-bold text-sm tracking-wide transition-all duration-200 hover:bg-blue-500 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-lg shadow-blue-600/10"
                             >
                                 {isSubmitting ? 'Evaluating Core Metrics...' : 'Initialize Pipeline Intake'}
                             </button>
@@ -176,8 +176,8 @@ export default function LeadCaptureForm() {
                                 Your business criteria have been committed directly to our secure PostgreSQL records.
                                 Our backend assigned your request a priority matrix signature of:{' '}
                                 <span className={`font-mono font-bold px-2 py-0.5 rounded text-xs tracking-wider ${assignedPriority === 'HIGH' ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' :
-                                        assignedPriority === 'MEDIUM' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' :
-                                            'bg-slate-900 text-slate-400 border border-slate-800'
+                                    assignedPriority === 'MEDIUM' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' :
+                                        'bg-slate-900 text-slate-400 border border-slate-800'
                                     }`}>
                                     {assignedPriority} PRIORITY
                                 </span>

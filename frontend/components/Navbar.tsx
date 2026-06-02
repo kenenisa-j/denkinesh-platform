@@ -19,7 +19,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* Brand Logo Identity */}
           <div className="flex-shrink-0 flex items-center">
             <a href="#home" className="text-xl font-bold tracking-wider text-brand-navy flex items-center gap-2">
@@ -41,8 +41,8 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="bg-brand-blue text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-brand-blueHover shadow-md shadow-brand-blue/10 transition-all duration-200"
             >
               Get Started

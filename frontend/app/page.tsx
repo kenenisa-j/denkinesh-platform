@@ -11,6 +11,8 @@ import TestimonialSlider from "@/components/TestimonialSlider";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import Workflow from "@/components/Workflow";
+import FAQSection from "@/components/FAQSection";
 
 export default function Home() {
   return (
@@ -33,6 +35,8 @@ export default function Home() {
       {/* 4. Interactive Conversion Slices (Phase 7 & 8) */}
 
       <LeadCaptureForm />
+      <Workflow />
+      <FAQSection />
 
       {/* 5. Direct General Communications (Phase 6) */}
       <ContactForm />

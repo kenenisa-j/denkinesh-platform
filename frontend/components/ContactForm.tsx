@@ -71,7 +71,7 @@ export default function ContactForm() {
 
                 {/* Section Header */}
                 <div className="mb-12 text-center flex flex-col items-center justify-center w-full">
-                    <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-blue bg-slate-900 px-3 py-1.5 rounded-md border border-slate-800">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-500 bg-slate-900 px-3 py-1.5 rounded-md border border-slate-800">
                         Get In Touch
                     </span>
                     <h2 className="mt-6 text-4xl font-black text-white tracking-tight sm:text-5xl">
@@ -94,7 +94,7 @@ export default function ContactForm() {
                                     type="text"
                                     placeholder="John Doe"
                                     {...register('name')}
-                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-brand-blue ${errors.name ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 ${errors.name ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                         }`}
                                 />
                                 {errors.name && <span className="text-xs font-semibold text-rose-400 mt-0.5">{errors.name.message}</span>}
@@ -106,7 +106,7 @@ export default function ContactForm() {
                                     type="email"
                                     placeholder="john@company.com"
                                     {...register('email')}
-                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-brand-blue ${errors.email ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                    className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 ${errors.email ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                         }`}
                                 />
                                 {errors.email && <span className="text-xs font-semibold text-rose-400 mt-0.5">{errors.email.message}</span>}
@@ -120,7 +120,7 @@ export default function ContactForm() {
                                 type="text"
                                 placeholder="Project Collaboration Opportunity"
                                 {...register('subject')}
-                                className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-brand-blue ${errors.subject ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 ${errors.subject ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                     }`}
                             />
                             {errors.subject && <span className="text-xs font-semibold text-rose-400 mt-0.5">{errors.subject.message}</span>}
@@ -133,7 +133,7 @@ export default function ContactForm() {
                                 rows={5}
                                 placeholder="Detail your requirements or ideas here..."
                                 {...register('message')}
-                                className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-brand-blue resize-none ${errors.message ? 'border-rose-500/50 focus:border-rose-500' : 'border-slate-800'
+                                className={`w-full px-4 py-3 rounded-lg bg-slate-900 border text-white transition-all duration-200 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 resize-none ${errors.message ? 'border-rose-500/50 focus:border-rose-500 focus:ring-0' : 'border-slate-800'
                                     }`}
                             />
                             {errors.message && <span className="text-xs font-semibold text-rose-400 mt-0.5">{errors.message.message}</span>}
@@ -143,8 +143,8 @@ export default function ContactForm() {
                         {submissionStatus.type && (
                             <div
                                 className={`p-4 rounded-lg border text-sm text-center font-medium ${submissionStatus.type === 'success'
-                                        ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
-                                        : 'bg-rose-500/5 border-rose-500/20 text-rose-400'
+                                    ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
+                                    : 'bg-rose-500/5 border-rose-500/20 text-rose-400'
                                     }`}
                             >
                                 {submissionStatus.message}
@@ -156,7 +156,7 @@ export default function ContactForm() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-brand-blue text-white font-bold text-sm tracking-wide transition-all duration-200 hover:bg-opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none"
+                                className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-blue-600 text-white font-bold text-sm tracking-wide transition-all duration-200 hover:bg-blue-500 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shadow-lg shadow-blue-600/10"
                             >
                                 {isSubmitting ? 'Processing Dispatch...' : 'Send Inquiry Message'}
                             </button>
