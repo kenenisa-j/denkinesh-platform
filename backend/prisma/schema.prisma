@@ -4,6 +4,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./client"
 }
 
 // Phase 10: Admin Authentication Table
@@ -62,4 +63,49 @@ model TeamMember {
   updatedAt    DateTime @updatedAt
 
   @@index([isActive])
+}
+// Add this model to your backend/prisma/schema.prisma file
+
+model Testimonial {
+  id             String   @id @default(uuid())
+  clientName     String   // Name of the reviewer
+  companyName    String?  // Optional company identifier/industry
+  role           String?  // Client's corporate title (e.g., Founder, PM)
+  avatarUrl      String?  // Optional profile picture URL
+  feedbackText   String   @db.Text // The verified rating review content
+  ratingValue    Int      @default(5) // Numerical score (e.g., 1 to 5 stars)
+  order          Int      @default(0) // Integer value to arrange presentation sequence
+  isActive       Boolean  @default(true) // Admin visibility toggle control
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("testimonials") // Maps model to lowercase table name in PostgreSQL
+}
+// Add this model to your backend/prisma/schema.prisma file
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String   // Sender's name
+  email     String   // Sender's email address
+  subject   String   // Subject of the inquiry
+  message   String   @db.Text // The raw message content
+  isRead    Boolean  @default(false) // Admin review state toggle
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages") // Maps model to lowercase table name in PostgreSQL
+}
+// Add this model to your backend/prisma/schema.prisma file
+
+model Lead {
+  id             String   @id @default(uuid())
+  clientName     String   // Contact person's name
+  email          String   // Contact email address
+  company        String   // Client company/organization name
+  budget         Float    // Project budget estimation parameter
+  projectDetails String   @db.Text // Full breakdown of the project requirements
+  aiScore        String   @default("LOW") // Automated prioritization matrix rating: LOW | MEDIUM | HIGH
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("leads") // Map model to lowercase database table name
 }

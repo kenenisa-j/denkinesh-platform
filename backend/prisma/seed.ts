@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import prisma from '../lib/prisma.js';
 
 async function main() {
   // Clean sweep old data to avoid unique constraints collision errors
