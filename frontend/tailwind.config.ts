@@ -1,26 +1,20 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}"
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        brand: {
-          navy: "#0F172A",       // Primary Deep Navy
-          blue: "#1D4ED8",       // Accent Blue / Primary CTA
-          blueHover: "#1E40AF",  // CTA Hover State
-          teal: "#0D9488",       // Highlight Teal (Innovation/AI)
-          bg: "#F8FAFC",         // Off-white Clean Background
-          text: "#475569",       // Slate Gray Body Text
-          error: "#DC2626"       // Error States
-        }
+        'brand-bg': '#ffffff',         // Light mode base background (White)
+        'brand-blue': '#2563eb',       // Primary functional accent (Royal Blue)
+        'brand-blueHover': '#1d4ed8',  // Active interactive dark overlay state
+        'brand-text': '#4b5563',       // Clear body text readability layer (Slate Gray)
+        'brand-navy': '#030712',       // Premium bold headline weight color (Charcoal Black)
+        'brand-teal': '#0d9488',       // Strategic technical callouts (Tech Teal)
       },
     },
   },
   plugins: [],
-};
-export default config;
+}
