@@ -1,16 +1,16 @@
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-brand-bg">
-      
+
       {/* Soft Premium Gradient Ambient Accents */}
       <div className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-brand-blue/5 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-brand-teal/5 rounded-full blur-3xl animate-pulse delay-700" />
-      
+
       {/* Technical Blueprint Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a04_1px,transparent_1px),linear-gradient(to_bottom,#0f172a04_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a08_1px,transparent_1px),linear-gradient(to_bottom,#0f172a08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-        
+
         {/* Innovation Tag Badge */}
         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal/20 bg-brand-teal/5 text-xs font-semibold text-brand-teal tracking-wide uppercase mb-8">
           <span className="w-2 h-2 rounded-full bg-brand-teal animate-ping" />
@@ -24,7 +24,7 @@ export default function Hero() {
 
         {/* Value Proposition Subtext */}
         <p className="max-w-2xl mx-auto text-lg sm:text-xl text-brand-text mb-12 font-normal leading-relaxed">
-          Accelerate your organizational workflow, substitute manual systems with flawless automation, and capture modern digital opportunities using enterprise software infrastructure tailored for growth[cite: 1].
+          Accelerate your organizational workflow, substitute manual systems with flawless automation, and capture modern digital opportunities using enterprise software infrastructure tailored for growth.
         </p>
 
         {/* Call to Actions */}
