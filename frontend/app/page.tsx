@@ -13,6 +13,7 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Workflow from "@/components/Workflow";
 import FAQSection from "@/components/FAQSection";
+import AIChatBot from "@/components/AIChatBot";
 
 export default function Home() {
   return (
@@ -40,6 +41,7 @@ export default function Home() {
 
       {/* 5. Direct General Communications (Phase 6) */}
       <ContactForm />
+      <AIChatBot />
 
       {/* 6. Global Footers (ONLY ONE) */}
       <Footer />
