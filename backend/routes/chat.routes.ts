@@ -1,9 +1,9 @@
-import type { Router, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Router } from "express";
+import type { Request, Response } from "express";
+import prisma from "../lib/prisma.js";
 import { OpenAI } from "openai";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Initialize OpenAI client (requires the OPENAI_API_KEY inside your .env)
 const openai = new OpenAI({
@@ -109,7 +109,7 @@ router.post("/message", async (req: Request, res: Response): Promise<any> => {
         };
 
         // Format histories array to pass cleanly straight to OpenAI completion arrays
-        const completionHistoryContext = completeMessageLogs.map((log) => ({
+        const completionHistoryContext = completeMessageLogs.map((log: any) => ({
             role: log.role as "user" | "assistant" | "system",
             content: log.content,
         }));
@@ -120,7 +120,7 @@ router.post("/message", async (req: Request, res: Response): Promise<any> => {
             messages: [systemPromptGuidelines, ...completionHistoryContext],
         });
 
-        const runtimeResponse = chatCompletion.choices[0].message.content || "I encountered a processing transmission delay. Could you please resend that input?";
+        const runtimeResponse = chatCompletion.choices?.[0]?.message?.content || "I encountered a processing transmission delay. Could you please resend that input?";
 
         // Save AI assistant reply securely into the database
         await prisma.aIMessage.create({

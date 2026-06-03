@@ -1,5 +1,6 @@
 datasource db {
   provider = "postgresql"
+  // The 'url' line is removed from here entirely in Prisma 7
 }
 
 generator client {
@@ -7,16 +8,25 @@ generator client {
   output   = "./client"
 }
 
-// Phase 10: Admin Authentication Table
+// =========================================================================
+// Phase 10: Admin Authentication Security Configuration
+// =========================================================================
 model Admin {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  passwordHash String
-  createdAt    DateTime @default(now())
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String // Stores the secure bcrypt salted password hash
+  firstName String?
+  lastName  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  @@index([email])
   @@map("admins")
 }
 
+// =========================================================================
+// Corporate Project Evidence Validation
+// =========================================================================
 model Project {
   id       String @id @default(uuid())
   title    String
@@ -43,15 +53,19 @@ model Project {
 
   @@index([category])
   @@index([slug])
+  @@map("projects")
 }
 
+// =========================================================================
+// Team & Organizational Profiles
+// =========================================================================
 model TeamMember {
   id          String   @id @default(uuid())
   name        String
   role        String // e.g., "Lead Full-Stack Engineer", "AI Specialist"
   avatarUrl   String // Profile picture file string/URL
   bio         String   @db.Text
-  specialties String[] // Array tracking operational skill vectors (e.g., ["React", "Node.js", "LLMs"])
+  specialties String[] // Array tracking operational skill vectors (e.g., ["React", "Node.js"])
 
   // Optional external profiles
   githubUrl   String?
@@ -65,10 +79,12 @@ model TeamMember {
   updatedAt DateTime @updatedAt
 
   @@index([isActive])
+  @@map("team_members")
 }
 
-// Add this model to your backend/prisma/schema.prisma file
-
+// =========================================================================
+// Verified Client Social Proof
+// =========================================================================
 model Testimonial {
   id           String   @id @default(uuid())
   clientName   String // Name of the reviewer
@@ -82,11 +98,12 @@ model Testimonial {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  @@map("testimonials") // Maps model to lowercase table name in PostgreSQL
+  @@map("testimonials")
 }
 
-// Add this model to your backend/prisma/schema.prisma file
-
+// =========================================================================
+// Lead Ingestion & Communications Management
+// =========================================================================
 model ContactMessage {
   id        String   @id @default(uuid())
   name      String // Sender's name
@@ -96,10 +113,8 @@ model ContactMessage {
   isRead    Boolean  @default(false) // Admin review state toggle
   createdAt DateTime @default(now())
 
-  @@map("contact_messages") // Maps model to lowercase table name in PostgreSQL
+  @@map("contact_messages")
 }
-
-// Add this model to your backend/prisma/schema.prisma file
 
 model Lead {
   id             String   @id @default(uuid())
@@ -112,11 +127,12 @@ model Lead {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  @@map("leads") // Map model to lowercase database table name
+  @@map("leads")
 }
 
-// model definition for AI Conversational Tracking
-
+// =========================================================================
+// Phase 9: AI Conversational Intent Harvesting
+// =========================================================================
 model AISession {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -132,6 +148,7 @@ model AISession {
   messages AIMessage[]
 
   @@index([createdAt])
+  @@map("ai_sessions")
 }
 
 model AIMessage {
@@ -145,6 +162,7 @@ model AIMessage {
   session AISession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   @@index([sessionId])
+  @@map("ai_messages")
 }
 
 enum Role {
