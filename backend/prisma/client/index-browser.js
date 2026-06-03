@@ -196,6 +196,24 @@ exports.Prisma.LeadScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AISessionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  capturedName: 'capturedName',
+  capturedEmail: 'capturedEmail',
+  businessPain: 'businessPain',
+  budgetIntent: 'budgetIntent'
+};
+
+exports.Prisma.AIMessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -210,7 +228,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Role = exports.$Enums.Role = {
+  user: 'user',
+  assistant: 'assistant',
+  system: 'system'
+};
 
 exports.Prisma.ModelName = {
   Admin: 'Admin',
@@ -218,7 +240,9 @@ exports.Prisma.ModelName = {
   TeamMember: 'TeamMember',
   Testimonial: 'Testimonial',
   ContactMessage: 'ContactMessage',
-  Lead: 'Lead'
+  Lead: 'Lead',
+  AISession: 'AISession',
+  AIMessage: 'AIMessage'
 };
 
 /**

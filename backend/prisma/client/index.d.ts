@@ -43,6 +43,34 @@ export type ContactMessage = $Result.DefaultSelection<Prisma.$ContactMessagePayl
  * 
  */
 export type Lead = $Result.DefaultSelection<Prisma.$LeadPayload>
+/**
+ * Model AISession
+ * 
+ */
+export type AISession = $Result.DefaultSelection<Prisma.$AISessionPayload>
+/**
+ * Model AIMessage
+ * 
+ */
+export type AIMessage = $Result.DefaultSelection<Prisma.$AIMessagePayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const Role: {
+  user: 'user',
+  assistant: 'assistant',
+  system: 'system'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+}
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
 
 /**
  * ##  Prisma Client ʲˢ
@@ -224,6 +252,26 @@ export class PrismaClient<
     * ```
     */
   get lead(): Prisma.LeadDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aISession`: Exposes CRUD operations for the **AISession** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AISessions
+    * const aISessions = await prisma.aISession.findMany()
+    * ```
+    */
+  get aISession(): Prisma.AISessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aIMessage`: Exposes CRUD operations for the **AIMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AIMessages
+    * const aIMessages = await prisma.aIMessage.findMany()
+    * ```
+    */
+  get aIMessage(): Prisma.AIMessageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -663,7 +711,9 @@ export namespace Prisma {
     TeamMember: 'TeamMember',
     Testimonial: 'Testimonial',
     ContactMessage: 'ContactMessage',
-    Lead: 'Lead'
+    Lead: 'Lead',
+    AISession: 'AISession',
+    AIMessage: 'AIMessage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -679,7 +729,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "project" | "teamMember" | "testimonial" | "contactMessage" | "lead"
+      modelProps: "admin" | "project" | "teamMember" | "testimonial" | "contactMessage" | "lead" | "aISession" | "aIMessage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1127,6 +1177,154 @@ export namespace Prisma {
           }
         }
       }
+      AISession: {
+        payload: Prisma.$AISessionPayload<ExtArgs>
+        fields: Prisma.AISessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AISessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AISessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>
+          }
+          findFirst: {
+            args: Prisma.AISessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AISessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>
+          }
+          findMany: {
+            args: Prisma.AISessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>[]
+          }
+          create: {
+            args: Prisma.AISessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>
+          }
+          createMany: {
+            args: Prisma.AISessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AISessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>[]
+          }
+          delete: {
+            args: Prisma.AISessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>
+          }
+          update: {
+            args: Prisma.AISessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AISessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AISessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AISessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>[]
+          }
+          upsert: {
+            args: Prisma.AISessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AISessionPayload>
+          }
+          aggregate: {
+            args: Prisma.AISessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAISession>
+          }
+          groupBy: {
+            args: Prisma.AISessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AISessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AISessionCountArgs<ExtArgs>
+            result: $Utils.Optional<AISessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      AIMessage: {
+        payload: Prisma.$AIMessagePayload<ExtArgs>
+        fields: Prisma.AIMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AIMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AIMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.AIMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AIMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          findMany: {
+            args: Prisma.AIMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>[]
+          }
+          create: {
+            args: Prisma.AIMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          createMany: {
+            args: Prisma.AIMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AIMessageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>[]
+          }
+          delete: {
+            args: Prisma.AIMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          update: {
+            args: Prisma.AIMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.AIMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AIMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AIMessageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>[]
+          }
+          upsert: {
+            args: Prisma.AIMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AIMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.AIMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAIMessage>
+          }
+          groupBy: {
+            args: Prisma.AIMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AIMessageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AIMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<AIMessageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1241,6 +1439,8 @@ export namespace Prisma {
     testimonial?: TestimonialOmit
     contactMessage?: ContactMessageOmit
     lead?: LeadOmit
+    aISession?: AISessionOmit
+    aIMessage?: AIMessageOmit
   }
 
   /* Types for Logging */
@@ -1315,6 +1515,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type AISessionCountOutputType
+   */
+
+  export type AISessionCountOutputType = {
+    messages: number
+  }
+
+  export type AISessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    messages?: boolean | AISessionCountOutputTypeCountMessagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AISessionCountOutputType without action
+   */
+  export type AISessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISessionCountOutputType
+     */
+    select?: AISessionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AISessionCountOutputType without action
+   */
+  export type AISessionCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIMessageWhereInput
+  }
 
 
   /**
@@ -7814,6 +8044,2170 @@ export namespace Prisma {
 
 
   /**
+   * Model AISession
+   */
+
+  export type AggregateAISession = {
+    _count: AISessionCountAggregateOutputType | null
+    _min: AISessionMinAggregateOutputType | null
+    _max: AISessionMaxAggregateOutputType | null
+  }
+
+  export type AISessionMinAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    capturedName: string | null
+    capturedEmail: string | null
+    businessPain: string | null
+    budgetIntent: string | null
+  }
+
+  export type AISessionMaxAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    capturedName: string | null
+    capturedEmail: string | null
+    businessPain: string | null
+    budgetIntent: string | null
+  }
+
+  export type AISessionCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    capturedName: number
+    capturedEmail: number
+    businessPain: number
+    budgetIntent: number
+    _all: number
+  }
+
+
+  export type AISessionMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    capturedName?: true
+    capturedEmail?: true
+    businessPain?: true
+    budgetIntent?: true
+  }
+
+  export type AISessionMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    capturedName?: true
+    capturedEmail?: true
+    businessPain?: true
+    budgetIntent?: true
+  }
+
+  export type AISessionCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    capturedName?: true
+    capturedEmail?: true
+    businessPain?: true
+    budgetIntent?: true
+    _all?: true
+  }
+
+  export type AISessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AISession to aggregate.
+     */
+    where?: AISessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AISessions to fetch.
+     */
+    orderBy?: AISessionOrderByWithRelationInput | AISessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AISessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AISessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AISessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AISessions
+    **/
+    _count?: true | AISessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AISessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AISessionMaxAggregateInputType
+  }
+
+  export type GetAISessionAggregateType<T extends AISessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAISession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAISession[P]>
+      : GetScalarType<T[P], AggregateAISession[P]>
+  }
+
+
+
+
+  export type AISessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AISessionWhereInput
+    orderBy?: AISessionOrderByWithAggregationInput | AISessionOrderByWithAggregationInput[]
+    by: AISessionScalarFieldEnum[] | AISessionScalarFieldEnum
+    having?: AISessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AISessionCountAggregateInputType | true
+    _min?: AISessionMinAggregateInputType
+    _max?: AISessionMaxAggregateInputType
+  }
+
+  export type AISessionGroupByOutputType = {
+    id: string
+    createdAt: Date
+    updatedAt: Date
+    capturedName: string | null
+    capturedEmail: string | null
+    businessPain: string | null
+    budgetIntent: string | null
+    _count: AISessionCountAggregateOutputType | null
+    _min: AISessionMinAggregateOutputType | null
+    _max: AISessionMaxAggregateOutputType | null
+  }
+
+  type GetAISessionGroupByPayload<T extends AISessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AISessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AISessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AISessionGroupByOutputType[P]>
+            : GetScalarType<T[P], AISessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AISessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    capturedName?: boolean
+    capturedEmail?: boolean
+    businessPain?: boolean
+    budgetIntent?: boolean
+    messages?: boolean | AISession$messagesArgs<ExtArgs>
+    _count?: boolean | AISessionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aISession"]>
+
+  export type AISessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    capturedName?: boolean
+    capturedEmail?: boolean
+    businessPain?: boolean
+    budgetIntent?: boolean
+  }, ExtArgs["result"]["aISession"]>
+
+  export type AISessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    capturedName?: boolean
+    capturedEmail?: boolean
+    businessPain?: boolean
+    budgetIntent?: boolean
+  }, ExtArgs["result"]["aISession"]>
+
+  export type AISessionSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    capturedName?: boolean
+    capturedEmail?: boolean
+    businessPain?: boolean
+    budgetIntent?: boolean
+  }
+
+  export type AISessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "capturedName" | "capturedEmail" | "businessPain" | "budgetIntent", ExtArgs["result"]["aISession"]>
+  export type AISessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    messages?: boolean | AISession$messagesArgs<ExtArgs>
+    _count?: boolean | AISessionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AISessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AISessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AISessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AISession"
+    objects: {
+      messages: Prisma.$AIMessagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      createdAt: Date
+      updatedAt: Date
+      capturedName: string | null
+      capturedEmail: string | null
+      businessPain: string | null
+      budgetIntent: string | null
+    }, ExtArgs["result"]["aISession"]>
+    composites: {}
+  }
+
+  type AISessionGetPayload<S extends boolean | null | undefined | AISessionDefaultArgs> = $Result.GetResult<Prisma.$AISessionPayload, S>
+
+  type AISessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AISessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AISessionCountAggregateInputType | true
+    }
+
+  export interface AISessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AISession'], meta: { name: 'AISession' } }
+    /**
+     * Find zero or one AISession that matches the filter.
+     * @param {AISessionFindUniqueArgs} args - Arguments to find a AISession
+     * @example
+     * // Get one AISession
+     * const aISession = await prisma.aISession.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AISessionFindUniqueArgs>(args: SelectSubset<T, AISessionFindUniqueArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AISession that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AISessionFindUniqueOrThrowArgs} args - Arguments to find a AISession
+     * @example
+     * // Get one AISession
+     * const aISession = await prisma.aISession.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AISessionFindUniqueOrThrowArgs>(args: SelectSubset<T, AISessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AISession that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AISessionFindFirstArgs} args - Arguments to find a AISession
+     * @example
+     * // Get one AISession
+     * const aISession = await prisma.aISession.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AISessionFindFirstArgs>(args?: SelectSubset<T, AISessionFindFirstArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AISession that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AISessionFindFirstOrThrowArgs} args - Arguments to find a AISession
+     * @example
+     * // Get one AISession
+     * const aISession = await prisma.aISession.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AISessionFindFirstOrThrowArgs>(args?: SelectSubset<T, AISessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AISessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AISessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AISessions
+     * const aISessions = await prisma.aISession.findMany()
+     * 
+     * // Get first 10 AISessions
+     * const aISessions = await prisma.aISession.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aISessionWithIdOnly = await prisma.aISession.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AISessionFindManyArgs>(args?: SelectSubset<T, AISessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AISession.
+     * @param {AISessionCreateArgs} args - Arguments to create a AISession.
+     * @example
+     * // Create one AISession
+     * const AISession = await prisma.aISession.create({
+     *   data: {
+     *     // ... data to create a AISession
+     *   }
+     * })
+     * 
+     */
+    create<T extends AISessionCreateArgs>(args: SelectSubset<T, AISessionCreateArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AISessions.
+     * @param {AISessionCreateManyArgs} args - Arguments to create many AISessions.
+     * @example
+     * // Create many AISessions
+     * const aISession = await prisma.aISession.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AISessionCreateManyArgs>(args?: SelectSubset<T, AISessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AISessions and returns the data saved in the database.
+     * @param {AISessionCreateManyAndReturnArgs} args - Arguments to create many AISessions.
+     * @example
+     * // Create many AISessions
+     * const aISession = await prisma.aISession.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AISessions and only return the `id`
+     * const aISessionWithIdOnly = await prisma.aISession.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AISessionCreateManyAndReturnArgs>(args?: SelectSubset<T, AISessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AISession.
+     * @param {AISessionDeleteArgs} args - Arguments to delete one AISession.
+     * @example
+     * // Delete one AISession
+     * const AISession = await prisma.aISession.delete({
+     *   where: {
+     *     // ... filter to delete one AISession
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AISessionDeleteArgs>(args: SelectSubset<T, AISessionDeleteArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AISession.
+     * @param {AISessionUpdateArgs} args - Arguments to update one AISession.
+     * @example
+     * // Update one AISession
+     * const aISession = await prisma.aISession.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AISessionUpdateArgs>(args: SelectSubset<T, AISessionUpdateArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AISessions.
+     * @param {AISessionDeleteManyArgs} args - Arguments to filter AISessions to delete.
+     * @example
+     * // Delete a few AISessions
+     * const { count } = await prisma.aISession.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AISessionDeleteManyArgs>(args?: SelectSubset<T, AISessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AISessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AISessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AISessions
+     * const aISession = await prisma.aISession.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AISessionUpdateManyArgs>(args: SelectSubset<T, AISessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AISessions and returns the data updated in the database.
+     * @param {AISessionUpdateManyAndReturnArgs} args - Arguments to update many AISessions.
+     * @example
+     * // Update many AISessions
+     * const aISession = await prisma.aISession.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AISessions and only return the `id`
+     * const aISessionWithIdOnly = await prisma.aISession.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AISessionUpdateManyAndReturnArgs>(args: SelectSubset<T, AISessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AISession.
+     * @param {AISessionUpsertArgs} args - Arguments to update or create a AISession.
+     * @example
+     * // Update or create a AISession
+     * const aISession = await prisma.aISession.upsert({
+     *   create: {
+     *     // ... data to create a AISession
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AISession we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AISessionUpsertArgs>(args: SelectSubset<T, AISessionUpsertArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AISessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AISessionCountArgs} args - Arguments to filter AISessions to count.
+     * @example
+     * // Count the number of AISessions
+     * const count = await prisma.aISession.count({
+     *   where: {
+     *     // ... the filter for the AISessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends AISessionCountArgs>(
+      args?: Subset<T, AISessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AISessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AISession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AISessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AISessionAggregateArgs>(args: Subset<T, AISessionAggregateArgs>): Prisma.PrismaPromise<GetAISessionAggregateType<T>>
+
+    /**
+     * Group by AISession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AISessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AISessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AISessionGroupByArgs['orderBy'] }
+        : { orderBy?: AISessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AISessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAISessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AISession model
+   */
+  readonly fields: AISessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AISession.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AISessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    messages<T extends AISession$messagesArgs<ExtArgs> = {}>(args?: Subset<T, AISession$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AISession model
+   */
+  interface AISessionFieldRefs {
+    readonly id: FieldRef<"AISession", 'String'>
+    readonly createdAt: FieldRef<"AISession", 'DateTime'>
+    readonly updatedAt: FieldRef<"AISession", 'DateTime'>
+    readonly capturedName: FieldRef<"AISession", 'String'>
+    readonly capturedEmail: FieldRef<"AISession", 'String'>
+    readonly businessPain: FieldRef<"AISession", 'String'>
+    readonly budgetIntent: FieldRef<"AISession", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AISession findUnique
+   */
+  export type AISessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AISession to fetch.
+     */
+    where: AISessionWhereUniqueInput
+  }
+
+  /**
+   * AISession findUniqueOrThrow
+   */
+  export type AISessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AISession to fetch.
+     */
+    where: AISessionWhereUniqueInput
+  }
+
+  /**
+   * AISession findFirst
+   */
+  export type AISessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AISession to fetch.
+     */
+    where?: AISessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AISessions to fetch.
+     */
+    orderBy?: AISessionOrderByWithRelationInput | AISessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AISessions.
+     */
+    cursor?: AISessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AISessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AISessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AISessions.
+     */
+    distinct?: AISessionScalarFieldEnum | AISessionScalarFieldEnum[]
+  }
+
+  /**
+   * AISession findFirstOrThrow
+   */
+  export type AISessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AISession to fetch.
+     */
+    where?: AISessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AISessions to fetch.
+     */
+    orderBy?: AISessionOrderByWithRelationInput | AISessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AISessions.
+     */
+    cursor?: AISessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AISessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AISessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AISessions.
+     */
+    distinct?: AISessionScalarFieldEnum | AISessionScalarFieldEnum[]
+  }
+
+  /**
+   * AISession findMany
+   */
+  export type AISessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AISessions to fetch.
+     */
+    where?: AISessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AISessions to fetch.
+     */
+    orderBy?: AISessionOrderByWithRelationInput | AISessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AISessions.
+     */
+    cursor?: AISessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AISessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AISessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AISessions.
+     */
+    distinct?: AISessionScalarFieldEnum | AISessionScalarFieldEnum[]
+  }
+
+  /**
+   * AISession create
+   */
+  export type AISessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AISession.
+     */
+    data: XOR<AISessionCreateInput, AISessionUncheckedCreateInput>
+  }
+
+  /**
+   * AISession createMany
+   */
+  export type AISessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AISessions.
+     */
+    data: AISessionCreateManyInput | AISessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AISession createManyAndReturn
+   */
+  export type AISessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * The data used to create many AISessions.
+     */
+    data: AISessionCreateManyInput | AISessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AISession update
+   */
+  export type AISessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AISession.
+     */
+    data: XOR<AISessionUpdateInput, AISessionUncheckedUpdateInput>
+    /**
+     * Choose, which AISession to update.
+     */
+    where: AISessionWhereUniqueInput
+  }
+
+  /**
+   * AISession updateMany
+   */
+  export type AISessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AISessions.
+     */
+    data: XOR<AISessionUpdateManyMutationInput, AISessionUncheckedUpdateManyInput>
+    /**
+     * Filter which AISessions to update
+     */
+    where?: AISessionWhereInput
+    /**
+     * Limit how many AISessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AISession updateManyAndReturn
+   */
+  export type AISessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * The data used to update AISessions.
+     */
+    data: XOR<AISessionUpdateManyMutationInput, AISessionUncheckedUpdateManyInput>
+    /**
+     * Filter which AISessions to update
+     */
+    where?: AISessionWhereInput
+    /**
+     * Limit how many AISessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AISession upsert
+   */
+  export type AISessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AISession to update in case it exists.
+     */
+    where: AISessionWhereUniqueInput
+    /**
+     * In case the AISession found by the `where` argument doesn't exist, create a new AISession with this data.
+     */
+    create: XOR<AISessionCreateInput, AISessionUncheckedCreateInput>
+    /**
+     * In case the AISession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AISessionUpdateInput, AISessionUncheckedUpdateInput>
+  }
+
+  /**
+   * AISession delete
+   */
+  export type AISessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+    /**
+     * Filter which AISession to delete.
+     */
+    where: AISessionWhereUniqueInput
+  }
+
+  /**
+   * AISession deleteMany
+   */
+  export type AISessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AISessions to delete
+     */
+    where?: AISessionWhereInput
+    /**
+     * Limit how many AISessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AISession.messages
+   */
+  export type AISession$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    where?: AIMessageWhereInput
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    cursor?: AIMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AISession without action
+   */
+  export type AISessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AISession
+     */
+    select?: AISessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AISession
+     */
+    omit?: AISessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AISessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AIMessage
+   */
+
+  export type AggregateAIMessage = {
+    _count: AIMessageCountAggregateOutputType | null
+    _min: AIMessageMinAggregateOutputType | null
+    _max: AIMessageMaxAggregateOutputType | null
+  }
+
+  export type AIMessageMinAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    role: $Enums.Role | null
+    content: string | null
+    createdAt: Date | null
+  }
+
+  export type AIMessageMaxAggregateOutputType = {
+    id: string | null
+    sessionId: string | null
+    role: $Enums.Role | null
+    content: string | null
+    createdAt: Date | null
+  }
+
+  export type AIMessageCountAggregateOutputType = {
+    id: number
+    sessionId: number
+    role: number
+    content: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AIMessageMinAggregateInputType = {
+    id?: true
+    sessionId?: true
+    role?: true
+    content?: true
+    createdAt?: true
+  }
+
+  export type AIMessageMaxAggregateInputType = {
+    id?: true
+    sessionId?: true
+    role?: true
+    content?: true
+    createdAt?: true
+  }
+
+  export type AIMessageCountAggregateInputType = {
+    id?: true
+    sessionId?: true
+    role?: true
+    content?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AIMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIMessage to aggregate.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AIMessages
+    **/
+    _count?: true | AIMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AIMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AIMessageMaxAggregateInputType
+  }
+
+  export type GetAIMessageAggregateType<T extends AIMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateAIMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAIMessage[P]>
+      : GetScalarType<T[P], AggregateAIMessage[P]>
+  }
+
+
+
+
+  export type AIMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AIMessageWhereInput
+    orderBy?: AIMessageOrderByWithAggregationInput | AIMessageOrderByWithAggregationInput[]
+    by: AIMessageScalarFieldEnum[] | AIMessageScalarFieldEnum
+    having?: AIMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AIMessageCountAggregateInputType | true
+    _min?: AIMessageMinAggregateInputType
+    _max?: AIMessageMaxAggregateInputType
+  }
+
+  export type AIMessageGroupByOutputType = {
+    id: string
+    sessionId: string
+    role: $Enums.Role
+    content: string
+    createdAt: Date
+    _count: AIMessageCountAggregateOutputType | null
+    _min: AIMessageMinAggregateOutputType | null
+    _max: AIMessageMaxAggregateOutputType | null
+  }
+
+  type GetAIMessageGroupByPayload<T extends AIMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AIMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AIMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AIMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], AIMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AIMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    role?: boolean
+    content?: boolean
+    createdAt?: boolean
+    session?: boolean | AISessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIMessage"]>
+
+  export type AIMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    role?: boolean
+    content?: boolean
+    createdAt?: boolean
+    session?: boolean | AISessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIMessage"]>
+
+  export type AIMessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionId?: boolean
+    role?: boolean
+    content?: boolean
+    createdAt?: boolean
+    session?: boolean | AISessionDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aIMessage"]>
+
+  export type AIMessageSelectScalar = {
+    id?: boolean
+    sessionId?: boolean
+    role?: boolean
+    content?: boolean
+    createdAt?: boolean
+  }
+
+  export type AIMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "role" | "content" | "createdAt", ExtArgs["result"]["aIMessage"]>
+  export type AIMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | AISessionDefaultArgs<ExtArgs>
+  }
+  export type AIMessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | AISessionDefaultArgs<ExtArgs>
+  }
+  export type AIMessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | AISessionDefaultArgs<ExtArgs>
+  }
+
+  export type $AIMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AIMessage"
+    objects: {
+      session: Prisma.$AISessionPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionId: string
+      role: $Enums.Role
+      content: string
+      createdAt: Date
+    }, ExtArgs["result"]["aIMessage"]>
+    composites: {}
+  }
+
+  type AIMessageGetPayload<S extends boolean | null | undefined | AIMessageDefaultArgs> = $Result.GetResult<Prisma.$AIMessagePayload, S>
+
+  type AIMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AIMessageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AIMessageCountAggregateInputType | true
+    }
+
+  export interface AIMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AIMessage'], meta: { name: 'AIMessage' } }
+    /**
+     * Find zero or one AIMessage that matches the filter.
+     * @param {AIMessageFindUniqueArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AIMessageFindUniqueArgs>(args: SelectSubset<T, AIMessageFindUniqueArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AIMessage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AIMessageFindUniqueOrThrowArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AIMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, AIMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageFindFirstArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AIMessageFindFirstArgs>(args?: SelectSubset<T, AIMessageFindFirstArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AIMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageFindFirstOrThrowArgs} args - Arguments to find a AIMessage
+     * @example
+     * // Get one AIMessage
+     * const aIMessage = await prisma.aIMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AIMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, AIMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AIMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AIMessages
+     * const aIMessages = await prisma.aIMessage.findMany()
+     * 
+     * // Get first 10 AIMessages
+     * const aIMessages = await prisma.aIMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aIMessageWithIdOnly = await prisma.aIMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AIMessageFindManyArgs>(args?: SelectSubset<T, AIMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AIMessage.
+     * @param {AIMessageCreateArgs} args - Arguments to create a AIMessage.
+     * @example
+     * // Create one AIMessage
+     * const AIMessage = await prisma.aIMessage.create({
+     *   data: {
+     *     // ... data to create a AIMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends AIMessageCreateArgs>(args: SelectSubset<T, AIMessageCreateArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AIMessages.
+     * @param {AIMessageCreateManyArgs} args - Arguments to create many AIMessages.
+     * @example
+     * // Create many AIMessages
+     * const aIMessage = await prisma.aIMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AIMessageCreateManyArgs>(args?: SelectSubset<T, AIMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AIMessages and returns the data saved in the database.
+     * @param {AIMessageCreateManyAndReturnArgs} args - Arguments to create many AIMessages.
+     * @example
+     * // Create many AIMessages
+     * const aIMessage = await prisma.aIMessage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AIMessages and only return the `id`
+     * const aIMessageWithIdOnly = await prisma.aIMessage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AIMessageCreateManyAndReturnArgs>(args?: SelectSubset<T, AIMessageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AIMessage.
+     * @param {AIMessageDeleteArgs} args - Arguments to delete one AIMessage.
+     * @example
+     * // Delete one AIMessage
+     * const AIMessage = await prisma.aIMessage.delete({
+     *   where: {
+     *     // ... filter to delete one AIMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AIMessageDeleteArgs>(args: SelectSubset<T, AIMessageDeleteArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AIMessage.
+     * @param {AIMessageUpdateArgs} args - Arguments to update one AIMessage.
+     * @example
+     * // Update one AIMessage
+     * const aIMessage = await prisma.aIMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AIMessageUpdateArgs>(args: SelectSubset<T, AIMessageUpdateArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AIMessages.
+     * @param {AIMessageDeleteManyArgs} args - Arguments to filter AIMessages to delete.
+     * @example
+     * // Delete a few AIMessages
+     * const { count } = await prisma.aIMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AIMessageDeleteManyArgs>(args?: SelectSubset<T, AIMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AIMessages
+     * const aIMessage = await prisma.aIMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AIMessageUpdateManyArgs>(args: SelectSubset<T, AIMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AIMessages and returns the data updated in the database.
+     * @param {AIMessageUpdateManyAndReturnArgs} args - Arguments to update many AIMessages.
+     * @example
+     * // Update many AIMessages
+     * const aIMessage = await prisma.aIMessage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AIMessages and only return the `id`
+     * const aIMessageWithIdOnly = await prisma.aIMessage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AIMessageUpdateManyAndReturnArgs>(args: SelectSubset<T, AIMessageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AIMessage.
+     * @param {AIMessageUpsertArgs} args - Arguments to update or create a AIMessage.
+     * @example
+     * // Update or create a AIMessage
+     * const aIMessage = await prisma.aIMessage.upsert({
+     *   create: {
+     *     // ... data to create a AIMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AIMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AIMessageUpsertArgs>(args: SelectSubset<T, AIMessageUpsertArgs<ExtArgs>>): Prisma__AIMessageClient<$Result.GetResult<Prisma.$AIMessagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AIMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageCountArgs} args - Arguments to filter AIMessages to count.
+     * @example
+     * // Count the number of AIMessages
+     * const count = await prisma.aIMessage.count({
+     *   where: {
+     *     // ... the filter for the AIMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends AIMessageCountArgs>(
+      args?: Subset<T, AIMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AIMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AIMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AIMessageAggregateArgs>(args: Subset<T, AIMessageAggregateArgs>): Prisma.PrismaPromise<GetAIMessageAggregateType<T>>
+
+    /**
+     * Group by AIMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AIMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AIMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AIMessageGroupByArgs['orderBy'] }
+        : { orderBy?: AIMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AIMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAIMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AIMessage model
+   */
+  readonly fields: AIMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AIMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AIMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    session<T extends AISessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AISessionDefaultArgs<ExtArgs>>): Prisma__AISessionClient<$Result.GetResult<Prisma.$AISessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AIMessage model
+   */
+  interface AIMessageFieldRefs {
+    readonly id: FieldRef<"AIMessage", 'String'>
+    readonly sessionId: FieldRef<"AIMessage", 'String'>
+    readonly role: FieldRef<"AIMessage", 'Role'>
+    readonly content: FieldRef<"AIMessage", 'String'>
+    readonly createdAt: FieldRef<"AIMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AIMessage findUnique
+   */
+  export type AIMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage findUniqueOrThrow
+   */
+  export type AIMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage findFirst
+   */
+  export type AIMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIMessages.
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIMessages.
+     */
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIMessage findFirstOrThrow
+   */
+  export type AIMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessage to fetch.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AIMessages.
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIMessages.
+     */
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIMessage findMany
+   */
+  export type AIMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which AIMessages to fetch.
+     */
+    where?: AIMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AIMessages to fetch.
+     */
+    orderBy?: AIMessageOrderByWithRelationInput | AIMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AIMessages.
+     */
+    cursor?: AIMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AIMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AIMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AIMessages.
+     */
+    distinct?: AIMessageScalarFieldEnum | AIMessageScalarFieldEnum[]
+  }
+
+  /**
+   * AIMessage create
+   */
+  export type AIMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AIMessage.
+     */
+    data: XOR<AIMessageCreateInput, AIMessageUncheckedCreateInput>
+  }
+
+  /**
+   * AIMessage createMany
+   */
+  export type AIMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AIMessages.
+     */
+    data: AIMessageCreateManyInput | AIMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AIMessage createManyAndReturn
+   */
+  export type AIMessageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * The data used to create many AIMessages.
+     */
+    data: AIMessageCreateManyInput | AIMessageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIMessage update
+   */
+  export type AIMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AIMessage.
+     */
+    data: XOR<AIMessageUpdateInput, AIMessageUncheckedUpdateInput>
+    /**
+     * Choose, which AIMessage to update.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage updateMany
+   */
+  export type AIMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AIMessages.
+     */
+    data: XOR<AIMessageUpdateManyMutationInput, AIMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which AIMessages to update
+     */
+    where?: AIMessageWhereInput
+    /**
+     * Limit how many AIMessages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIMessage updateManyAndReturn
+   */
+  export type AIMessageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * The data used to update AIMessages.
+     */
+    data: XOR<AIMessageUpdateManyMutationInput, AIMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which AIMessages to update
+     */
+    where?: AIMessageWhereInput
+    /**
+     * Limit how many AIMessages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AIMessage upsert
+   */
+  export type AIMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AIMessage to update in case it exists.
+     */
+    where: AIMessageWhereUniqueInput
+    /**
+     * In case the AIMessage found by the `where` argument doesn't exist, create a new AIMessage with this data.
+     */
+    create: XOR<AIMessageCreateInput, AIMessageUncheckedCreateInput>
+    /**
+     * In case the AIMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AIMessageUpdateInput, AIMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * AIMessage delete
+   */
+  export type AIMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+    /**
+     * Filter which AIMessage to delete.
+     */
+    where: AIMessageWhereUniqueInput
+  }
+
+  /**
+   * AIMessage deleteMany
+   */
+  export type AIMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AIMessages to delete
+     */
+    where?: AIMessageWhereInput
+    /**
+     * Limit how many AIMessages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AIMessage without action
+   */
+  export type AIMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AIMessage
+     */
+    select?: AIMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AIMessage
+     */
+    omit?: AIMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AIMessageInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7921,6 +10315,30 @@ export namespace Prisma {
   export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
 
 
+  export const AISessionScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    capturedName: 'capturedName',
+    capturedEmail: 'capturedEmail',
+    businessPain: 'businessPain',
+    budgetIntent: 'budgetIntent'
+  };
+
+  export type AISessionScalarFieldEnum = (typeof AISessionScalarFieldEnum)[keyof typeof AISessionScalarFieldEnum]
+
+
+  export const AIMessageScalarFieldEnum: {
+    id: 'id',
+    sessionId: 'sessionId',
+    role: 'role',
+    content: 'content',
+    createdAt: 'createdAt'
+  };
+
+  export type AIMessageScalarFieldEnum = (typeof AIMessageScalarFieldEnum)[keyof typeof AIMessageScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -8010,6 +10428,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role[]'
+   */
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
     
   /**
    * Deep Input Types
@@ -8474,6 +10906,126 @@ export namespace Prisma {
     aiScore?: StringWithAggregatesFilter<"Lead"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Lead"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Lead"> | Date | string
+  }
+
+  export type AISessionWhereInput = {
+    AND?: AISessionWhereInput | AISessionWhereInput[]
+    OR?: AISessionWhereInput[]
+    NOT?: AISessionWhereInput | AISessionWhereInput[]
+    id?: StringFilter<"AISession"> | string
+    createdAt?: DateTimeFilter<"AISession"> | Date | string
+    updatedAt?: DateTimeFilter<"AISession"> | Date | string
+    capturedName?: StringNullableFilter<"AISession"> | string | null
+    capturedEmail?: StringNullableFilter<"AISession"> | string | null
+    businessPain?: StringNullableFilter<"AISession"> | string | null
+    budgetIntent?: StringNullableFilter<"AISession"> | string | null
+    messages?: AIMessageListRelationFilter
+  }
+
+  export type AISessionOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    capturedName?: SortOrderInput | SortOrder
+    capturedEmail?: SortOrderInput | SortOrder
+    businessPain?: SortOrderInput | SortOrder
+    budgetIntent?: SortOrderInput | SortOrder
+    messages?: AIMessageOrderByRelationAggregateInput
+  }
+
+  export type AISessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AISessionWhereInput | AISessionWhereInput[]
+    OR?: AISessionWhereInput[]
+    NOT?: AISessionWhereInput | AISessionWhereInput[]
+    createdAt?: DateTimeFilter<"AISession"> | Date | string
+    updatedAt?: DateTimeFilter<"AISession"> | Date | string
+    capturedName?: StringNullableFilter<"AISession"> | string | null
+    capturedEmail?: StringNullableFilter<"AISession"> | string | null
+    businessPain?: StringNullableFilter<"AISession"> | string | null
+    budgetIntent?: StringNullableFilter<"AISession"> | string | null
+    messages?: AIMessageListRelationFilter
+  }, "id">
+
+  export type AISessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    capturedName?: SortOrderInput | SortOrder
+    capturedEmail?: SortOrderInput | SortOrder
+    businessPain?: SortOrderInput | SortOrder
+    budgetIntent?: SortOrderInput | SortOrder
+    _count?: AISessionCountOrderByAggregateInput
+    _max?: AISessionMaxOrderByAggregateInput
+    _min?: AISessionMinOrderByAggregateInput
+  }
+
+  export type AISessionScalarWhereWithAggregatesInput = {
+    AND?: AISessionScalarWhereWithAggregatesInput | AISessionScalarWhereWithAggregatesInput[]
+    OR?: AISessionScalarWhereWithAggregatesInput[]
+    NOT?: AISessionScalarWhereWithAggregatesInput | AISessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AISession"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AISession"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AISession"> | Date | string
+    capturedName?: StringNullableWithAggregatesFilter<"AISession"> | string | null
+    capturedEmail?: StringNullableWithAggregatesFilter<"AISession"> | string | null
+    businessPain?: StringNullableWithAggregatesFilter<"AISession"> | string | null
+    budgetIntent?: StringNullableWithAggregatesFilter<"AISession"> | string | null
+  }
+
+  export type AIMessageWhereInput = {
+    AND?: AIMessageWhereInput | AIMessageWhereInput[]
+    OR?: AIMessageWhereInput[]
+    NOT?: AIMessageWhereInput | AIMessageWhereInput[]
+    id?: StringFilter<"AIMessage"> | string
+    sessionId?: StringFilter<"AIMessage"> | string
+    role?: EnumRoleFilter<"AIMessage"> | $Enums.Role
+    content?: StringFilter<"AIMessage"> | string
+    createdAt?: DateTimeFilter<"AIMessage"> | Date | string
+    session?: XOR<AISessionScalarRelationFilter, AISessionWhereInput>
+  }
+
+  export type AIMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    session?: AISessionOrderByWithRelationInput
+  }
+
+  export type AIMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AIMessageWhereInput | AIMessageWhereInput[]
+    OR?: AIMessageWhereInput[]
+    NOT?: AIMessageWhereInput | AIMessageWhereInput[]
+    sessionId?: StringFilter<"AIMessage"> | string
+    role?: EnumRoleFilter<"AIMessage"> | $Enums.Role
+    content?: StringFilter<"AIMessage"> | string
+    createdAt?: DateTimeFilter<"AIMessage"> | Date | string
+    session?: XOR<AISessionScalarRelationFilter, AISessionWhereInput>
+  }, "id">
+
+  export type AIMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    _count?: AIMessageCountOrderByAggregateInput
+    _max?: AIMessageMaxOrderByAggregateInput
+    _min?: AIMessageMinOrderByAggregateInput
+  }
+
+  export type AIMessageScalarWhereWithAggregatesInput = {
+    AND?: AIMessageScalarWhereWithAggregatesInput | AIMessageScalarWhereWithAggregatesInput[]
+    OR?: AIMessageScalarWhereWithAggregatesInput[]
+    NOT?: AIMessageScalarWhereWithAggregatesInput | AIMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AIMessage"> | string
+    sessionId?: StringWithAggregatesFilter<"AIMessage"> | string
+    role?: EnumRoleWithAggregatesFilter<"AIMessage"> | $Enums.Role
+    content?: StringWithAggregatesFilter<"AIMessage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AIMessage"> | Date | string
   }
 
   export type AdminCreateInput = {
@@ -9005,6 +11557,135 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AISessionCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    capturedName?: string | null
+    capturedEmail?: string | null
+    businessPain?: string | null
+    budgetIntent?: string | null
+    messages?: AIMessageCreateNestedManyWithoutSessionInput
+  }
+
+  export type AISessionUncheckedCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    capturedName?: string | null
+    capturedEmail?: string | null
+    businessPain?: string | null
+    budgetIntent?: string | null
+    messages?: AIMessageUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type AISessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    capturedName?: NullableStringFieldUpdateOperationsInput | string | null
+    capturedEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPain?: NullableStringFieldUpdateOperationsInput | string | null
+    budgetIntent?: NullableStringFieldUpdateOperationsInput | string | null
+    messages?: AIMessageUpdateManyWithoutSessionNestedInput
+  }
+
+  export type AISessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    capturedName?: NullableStringFieldUpdateOperationsInput | string | null
+    capturedEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPain?: NullableStringFieldUpdateOperationsInput | string | null
+    budgetIntent?: NullableStringFieldUpdateOperationsInput | string | null
+    messages?: AIMessageUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type AISessionCreateManyInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    capturedName?: string | null
+    capturedEmail?: string | null
+    businessPain?: string | null
+    budgetIntent?: string | null
+  }
+
+  export type AISessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    capturedName?: NullableStringFieldUpdateOperationsInput | string | null
+    capturedEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPain?: NullableStringFieldUpdateOperationsInput | string | null
+    budgetIntent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AISessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    capturedName?: NullableStringFieldUpdateOperationsInput | string | null
+    capturedEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPain?: NullableStringFieldUpdateOperationsInput | string | null
+    budgetIntent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AIMessageCreateInput = {
+    id?: string
+    role: $Enums.Role
+    content: string
+    createdAt?: Date | string
+    session: AISessionCreateNestedOneWithoutMessagesInput
+  }
+
+  export type AIMessageUncheckedCreateInput = {
+    id?: string
+    sessionId: string
+    role: $Enums.Role
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    session?: AISessionUpdateOneRequiredWithoutMessagesNestedInput
+  }
+
+  export type AIMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIMessageCreateManyInput = {
+    id?: string
+    sessionId: string
+    role: $Enums.Role
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9432,6 +12113,92 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type AIMessageListRelationFilter = {
+    every?: AIMessageWhereInput
+    some?: AIMessageWhereInput
+    none?: AIMessageWhereInput
+  }
+
+  export type AIMessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AISessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    capturedName?: SortOrder
+    capturedEmail?: SortOrder
+    businessPain?: SortOrder
+    budgetIntent?: SortOrder
+  }
+
+  export type AISessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    capturedName?: SortOrder
+    capturedEmail?: SortOrder
+    businessPain?: SortOrder
+    budgetIntent?: SortOrder
+  }
+
+  export type AISessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    capturedName?: SortOrder
+    capturedEmail?: SortOrder
+    businessPain?: SortOrder
+    budgetIntent?: SortOrder
+  }
+
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type AISessionScalarRelationFilter = {
+    is?: AISessionWhereInput
+    isNot?: AISessionWhereInput
+  }
+
+  export type AIMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AIMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionId?: SortOrder
+    role?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9489,6 +12256,66 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type AIMessageCreateNestedManyWithoutSessionInput = {
+    create?: XOR<AIMessageCreateWithoutSessionInput, AIMessageUncheckedCreateWithoutSessionInput> | AIMessageCreateWithoutSessionInput[] | AIMessageUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutSessionInput | AIMessageCreateOrConnectWithoutSessionInput[]
+    createMany?: AIMessageCreateManySessionInputEnvelope
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+  }
+
+  export type AIMessageUncheckedCreateNestedManyWithoutSessionInput = {
+    create?: XOR<AIMessageCreateWithoutSessionInput, AIMessageUncheckedCreateWithoutSessionInput> | AIMessageCreateWithoutSessionInput[] | AIMessageUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutSessionInput | AIMessageCreateOrConnectWithoutSessionInput[]
+    createMany?: AIMessageCreateManySessionInputEnvelope
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+  }
+
+  export type AIMessageUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<AIMessageCreateWithoutSessionInput, AIMessageUncheckedCreateWithoutSessionInput> | AIMessageCreateWithoutSessionInput[] | AIMessageUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutSessionInput | AIMessageCreateOrConnectWithoutSessionInput[]
+    upsert?: AIMessageUpsertWithWhereUniqueWithoutSessionInput | AIMessageUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: AIMessageCreateManySessionInputEnvelope
+    set?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    disconnect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    delete?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    update?: AIMessageUpdateWithWhereUniqueWithoutSessionInput | AIMessageUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: AIMessageUpdateManyWithWhereWithoutSessionInput | AIMessageUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+  }
+
+  export type AIMessageUncheckedUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<AIMessageCreateWithoutSessionInput, AIMessageUncheckedCreateWithoutSessionInput> | AIMessageCreateWithoutSessionInput[] | AIMessageUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: AIMessageCreateOrConnectWithoutSessionInput | AIMessageCreateOrConnectWithoutSessionInput[]
+    upsert?: AIMessageUpsertWithWhereUniqueWithoutSessionInput | AIMessageUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: AIMessageCreateManySessionInputEnvelope
+    set?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    disconnect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    delete?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    connect?: AIMessageWhereUniqueInput | AIMessageWhereUniqueInput[]
+    update?: AIMessageUpdateWithWhereUniqueWithoutSessionInput | AIMessageUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: AIMessageUpdateManyWithWhereWithoutSessionInput | AIMessageUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+  }
+
+  export type AISessionCreateNestedOneWithoutMessagesInput = {
+    create?: XOR<AISessionCreateWithoutMessagesInput, AISessionUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: AISessionCreateOrConnectWithoutMessagesInput
+    connect?: AISessionWhereUniqueInput
+  }
+
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
+  export type AISessionUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<AISessionCreateWithoutMessagesInput, AISessionUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: AISessionCreateOrConnectWithoutMessagesInput
+    upsert?: AISessionUpsertWithoutMessagesInput
+    connect?: AISessionWhereUniqueInput
+    update?: XOR<XOR<AISessionUpdateToOneWithWhereWithoutMessagesInput, AISessionUpdateWithoutMessagesInput>, AISessionUncheckedUpdateWithoutMessagesInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9654,6 +12481,158 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
+  export type AIMessageCreateWithoutSessionInput = {
+    id?: string
+    role: $Enums.Role
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIMessageUncheckedCreateWithoutSessionInput = {
+    id?: string
+    role: $Enums.Role
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIMessageCreateOrConnectWithoutSessionInput = {
+    where: AIMessageWhereUniqueInput
+    create: XOR<AIMessageCreateWithoutSessionInput, AIMessageUncheckedCreateWithoutSessionInput>
+  }
+
+  export type AIMessageCreateManySessionInputEnvelope = {
+    data: AIMessageCreateManySessionInput | AIMessageCreateManySessionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AIMessageUpsertWithWhereUniqueWithoutSessionInput = {
+    where: AIMessageWhereUniqueInput
+    update: XOR<AIMessageUpdateWithoutSessionInput, AIMessageUncheckedUpdateWithoutSessionInput>
+    create: XOR<AIMessageCreateWithoutSessionInput, AIMessageUncheckedCreateWithoutSessionInput>
+  }
+
+  export type AIMessageUpdateWithWhereUniqueWithoutSessionInput = {
+    where: AIMessageWhereUniqueInput
+    data: XOR<AIMessageUpdateWithoutSessionInput, AIMessageUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type AIMessageUpdateManyWithWhereWithoutSessionInput = {
+    where: AIMessageScalarWhereInput
+    data: XOR<AIMessageUpdateManyMutationInput, AIMessageUncheckedUpdateManyWithoutSessionInput>
+  }
+
+  export type AIMessageScalarWhereInput = {
+    AND?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+    OR?: AIMessageScalarWhereInput[]
+    NOT?: AIMessageScalarWhereInput | AIMessageScalarWhereInput[]
+    id?: StringFilter<"AIMessage"> | string
+    sessionId?: StringFilter<"AIMessage"> | string
+    role?: EnumRoleFilter<"AIMessage"> | $Enums.Role
+    content?: StringFilter<"AIMessage"> | string
+    createdAt?: DateTimeFilter<"AIMessage"> | Date | string
+  }
+
+  export type AISessionCreateWithoutMessagesInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    capturedName?: string | null
+    capturedEmail?: string | null
+    businessPain?: string | null
+    budgetIntent?: string | null
+  }
+
+  export type AISessionUncheckedCreateWithoutMessagesInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    capturedName?: string | null
+    capturedEmail?: string | null
+    businessPain?: string | null
+    budgetIntent?: string | null
+  }
+
+  export type AISessionCreateOrConnectWithoutMessagesInput = {
+    where: AISessionWhereUniqueInput
+    create: XOR<AISessionCreateWithoutMessagesInput, AISessionUncheckedCreateWithoutMessagesInput>
+  }
+
+  export type AISessionUpsertWithoutMessagesInput = {
+    update: XOR<AISessionUpdateWithoutMessagesInput, AISessionUncheckedUpdateWithoutMessagesInput>
+    create: XOR<AISessionCreateWithoutMessagesInput, AISessionUncheckedCreateWithoutMessagesInput>
+    where?: AISessionWhereInput
+  }
+
+  export type AISessionUpdateToOneWithWhereWithoutMessagesInput = {
+    where?: AISessionWhereInput
+    data: XOR<AISessionUpdateWithoutMessagesInput, AISessionUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type AISessionUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    capturedName?: NullableStringFieldUpdateOperationsInput | string | null
+    capturedEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPain?: NullableStringFieldUpdateOperationsInput | string | null
+    budgetIntent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AISessionUncheckedUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    capturedName?: NullableStringFieldUpdateOperationsInput | string | null
+    capturedEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    businessPain?: NullableStringFieldUpdateOperationsInput | string | null
+    budgetIntent?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AIMessageCreateManySessionInput = {
+    id?: string
+    role: $Enums.Role
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type AIMessageUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIMessageUncheckedUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AIMessageUncheckedUpdateManyWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

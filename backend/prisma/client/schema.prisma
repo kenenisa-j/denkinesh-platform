@@ -114,3 +114,41 @@ model Lead {
 
   @@map("leads") // Map model to lowercase database table name
 }
+
+// model definition for AI Conversational Tracking
+
+model AISession {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Buyer Intent Harvesting Metadata
+  capturedName  String? // Populated if user reveals name during chat
+  capturedEmail String? // Populated if user provides email
+  businessPain  String? // Inferred core operational problem tracking
+  budgetIntent  String? // Inferred investment scale tracking
+
+  // Message Log Relation
+  messages AIMessage[]
+
+  @@index([createdAt])
+}
+
+model AIMessage {
+  id        String   @id @default(uuid())
+  sessionId String
+  role      Role // Enum defining sender structure (user or system/assistant)
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  // Relationships
+  session AISession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+}
+
+enum Role {
+  user
+  assistant
+  system
+}
