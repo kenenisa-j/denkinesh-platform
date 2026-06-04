@@ -5,6 +5,7 @@ import projectRoutes from './routes/project.routes.js';
 import teamRoutes from './routes/team.routes.js';
 import testimonialRoutes from './routes/testimonial.routes.js';
 import contactRoutes from './routes/contact.routes.js';
+import chatRouter from './routes/chat.routes.js';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/api/v1', projectRoutes);
 app.use('/api/v1', teamRoutes);
 app.use('/api/v1/testimonials', testimonialRoutes);
 app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1', chatRouter);
 
 // Base health check routing option
 app.get('/health', (req, res) => {

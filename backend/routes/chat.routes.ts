@@ -1,13 +1,14 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
 import prisma from "../lib/prisma.js";
-import { OpenAI } from "openai";
+// Update this line to import from 'groq-sdk' instead of '@groq/groq-sdk'
+import { Groq } from "groq-sdk";
 
 const router = Router();
 
-// Initialize OpenAI client (requires the OPENAI_API_KEY inside your .env)
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+// Initialize the free Groq client
+const groq = new Groq({
+    apiKey: process.env.GROQ_API_KEY,
 });
 
 /**
@@ -15,7 +16,7 @@ const openai = new OpenAI({
  * Handles conversational UI interactions, enforces safety length barriers,
  * and tracks real-time customer intent metrics.
  */
-router.post("/message", async (req: Request, res: Response): Promise<any> => {
+router.post("/chat/message", async (req: Request, res: Response): Promise<any> => {
     try {
         const { sessionId, messageContent } = req.body;
 
@@ -62,7 +63,7 @@ router.post("/message", async (req: Request, res: Response): Promise<any> => {
             });
         }
 
-        // Capture explicit regex matches directly into database metadata fields before hitting OpenAI
+        // Capture explicit regex matches directly into database metadata fields before hitting AI
         const initialPayload: Record<string, string> = {};
         if (matchedEmails && matchedEmails.length > 0) {
             initialPayload.capturedEmail = matchedEmails[0];
@@ -86,37 +87,64 @@ router.post("/message", async (req: Request, res: Response): Promise<any> => {
             },
         });
 
+        // =========================================================================
+        // NEW: LIVE DATABASE DATA ACCUMULATION FOR WEB PAGE KNOWLEDGE
+        // =========================================================================
+        // Fetch real-time web context entries across your system collections
+        const [dbProjects, dbTeam, dbTestimonials] = await Promise.all([
+            prisma.project.findMany({ take: 5, select: { title: true, category: true, businessSummary: true } }),
+            prisma.teamMember.findMany({ select: { name: true, role: true, specialties: true } }),
+            prisma.testimonial.findMany({ take: 3, select: { clientName: true, feedbackText: true } })
+        ]);
+
+        // Transform collection arrays to highly structured readable markdown context strings
+        const dynamicProjectsContext = dbProjects.map(p => `- ${p.title} (${p.category}): ${p.businessSummary}`).join("\n");
+        const dynamicTeamContext = dbTeam.map(t => `- ${t.name}, ${t.role} (Specialties: ${t.specialties ? t.specialties.join(", ") : "Full-Stack Development"})`).join("\n");
+        const dynamicTestimonialsContext = dbTestimonials.map(t => `- "${t.feedbackText}" — ${t.clientName}`).join("\n");
+
+        // System Guidelines - Formulating constraints using the dynamic context variables
+        const systemPromptGuidelines = {
+            role: "system" as const,
+            content: `You are the expert conversational AI assistant for Denkinesh Platform. Your core objective is to answer questions accurately by referencing our real website data.
+
+      LIVE KNOWLEDGE BASE FROM OUR WEBPAGES:
+      [REAL TIME PROJECTS & PORTFOLIO]
+      ${dynamicProjectsContext || "We design high-performance full-stack custom web applications and ERP enterprise networks."}
+
+      [OUR PROFESSIONAL TEAM WORKFORCE]
+      ${dynamicTeamContext || "Our roster includes specialized software architects, automation engineers, and full-stack developers."}
+
+      [CLIENT SUCCESS REVIEWS & TESTIMONIALS]
+      ${dynamicTestimonialsContext || "Clients value our fast deployment speeds, custom software delivery, and direct platform architecture."}
+
+      OUR 5-STEP WORKFLOW METHODOLOGY:
+      1. Discovery & Strategy, 2. Planning & Design, 3. Full-Stack Development, 4. Testing & Refinement, 5. Launch & Ongoing Support.
+
+      CONVERSATION STYLE & DISCIPLINE RULES:
+      - Read the user's message carefully. Do NOT talk about the 5-step process unless they explicitly ask how we build projects, our workflow, or our development process.
+      - If they ask what we have built, our past work, or what is on our pages, use the exact items under [REAL TIME PROJECTS].
+      - If they ask who works here, about your developers, or the team, use the exact info under [OUR PROFESSIONAL TEAM WORKFORCE].
+      - Sound natural, technical, professional, and clear. 
+      - Keep responses strictly under 3 sentences. Never dump paragraphs on the user.`,
+        };
+
+        // =========================================================================
+
         // Re-fetch message logs to keep absolute memory accuracy for the model context
         const completeMessageLogs = await prisma.aIMessage.findMany({
             where: { sessionId: session.id },
             orderBy: { createdAt: "asc" },
         });
 
-        // System Guidelines - Embedding your company details, 5-step framework, and pricing baselines
-        const systemPromptGuidelines = {
-            role: "system" as const,
-            content: `You are the expert conversational AI assistant for Denkinesh Platform. Your core objective is to guide potential business buyers and capture clear lead insights.
-
-      CRITICAL PLATFORM DETAILS & RULES:
-      - SERVICE SCOPE: We design high-performance full-stack custom applications, enterprise ERP networks, and intelligent software automations.
-      - PROVEN 5-STEP PROCESS: 1. Discovery & Strategy, 2. Planning & Design, 3. Full-Stack Development, 4. Testing & Refinement, 5. Launch & Ongoing Support. Always confidently emphasize this workflow structure if clients ask how we build.
-      - PRICING BASELINES: Project tiers span from Custom Single-Portal Systems up to complex, deep Enterprise Systems. Exact figures depend directly on the features mapped in Discovery.
-      
-      CONVERSATION STYLE:
-      - Sound professional, strategic, and highly technical yet clear.
-      - Keep responses under 3 short sentences. Never overwhelm the client.
-      - If they share project issues or budget preferences, keep track of them naturally.`,
-        };
-
-        // Format histories array to pass cleanly straight to OpenAI completion arrays
+        // Format histories array to pass cleanly straight to Groq completion arrays
         const completionHistoryContext = completeMessageLogs.map((log: any) => ({
             role: log.role as "user" | "assistant" | "system",
             content: log.content,
         }));
 
-        // Dispatch payload context cleanly to OpenAI completion endpoint
-        const chatCompletion = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
+        // Dispatch payload context cleanly to Groq completion endpoint using your model
+        const chatCompletion = await groq.chat.completions.create({
+            model: "llama-3.3-70b-versatile",
             messages: [systemPromptGuidelines, ...completionHistoryContext],
         });
 
