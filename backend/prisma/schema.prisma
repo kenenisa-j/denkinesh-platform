@@ -170,3 +170,10 @@ enum Role {
   assistant
   system
 }
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // Will store the cryptographically hashed string
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -1,9 +1,5 @@
-import "./globals.css"; // 👈 THIS IS THE CRITICAL MISSING LINK!
-
-export const metadata = {
-  title: "Denkinesh Technologies",
-  description: "Enterprise Custom Software & Automation Solutions",
-};
+import { AuthProvider } from "@/context/AuthContext";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -12,7 +8,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }
